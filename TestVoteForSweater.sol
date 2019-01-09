@@ -6,6 +6,6 @@ contract TestVoteForSweater is VoteForSweater {
 
   function test_sweaterVote() {
     sweaterVote("2");
-    assert(sweaterMap[msg.sender] == "2");
+    assert(keccak256(sweaterMap[msg.sender]) == keccak256("2"));
   }
 }

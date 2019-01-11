@@ -14,7 +14,6 @@ contract VoteForSweaterV3 {
         if (keccak256(colorChoices[i]) == keccak256(color)) {
             sweaterMap[color] += 1;
             alreadyVoted[msg.sender] = true;
-            // emitting event
             emit SweaterEvent(msg.sender, color);
             break;
         }

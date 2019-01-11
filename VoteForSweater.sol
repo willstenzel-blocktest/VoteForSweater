@@ -2,13 +2,16 @@ pragma solidity 0.4.25;
 
 contract VoteForSweater {
 
-  mapping(address => string) sweaterMap;
+  mapping(string => uint) sweaterMap;
 
-  event SweaterEvent(address sender, string value);
+  event SweaterEvent(address sender, string description);
 
-  function sweaterVote(string memory val) public {
-    sweaterMap[msg.sender] = val;
-    // emitting event
-    emit SweaterEvent(msg.sender, val);
+  function sweaterVote(string memory description) public {
+    sweaterMap[description] += 1;
+    emit SweaterEvent(msg.sender, description);
   }
-} 
+
+  function getVotes(string memory description) view public returns (uint votes) {
+      return sweaterMap[description];
+  }
+}

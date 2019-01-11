@@ -5,7 +5,12 @@ import "./VoteForSweater.sol";
 contract TestVoteForSweater is VoteForSweater {
 
   function test_sweaterVote() {
-    sweaterVote("2");
-    assert(keccak256(sweaterMap[msg.sender]) == keccak256("2"));
+    uint blueVotes = getVotes("blue");
+    sweaterVote("blue");
+    blueVotes += 1;
+    assert(getVotes("blue") == blueVotes);
+    sweaterVote("blue");
+    blueVotes += 1;
+    assert(getVotes("blue") == blueVotes);
   }
 }

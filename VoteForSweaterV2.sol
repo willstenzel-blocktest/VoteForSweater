@@ -11,7 +11,6 @@ contract VoteForSweaterV2 {
     for (uint i = 0; i < colorChoices.length; i++) {
         if (keccak256(colorChoices[i]) == keccak256(color)) {
             sweaterMap[color] += 1;
-            // emitting event
             emit SweaterEvent(msg.sender, color);
             break;
         }

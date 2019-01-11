@@ -9,10 +9,12 @@ contract TestVoteForSweaterV2 is VoteForSweaterV2 {
     sweaterVote("turtle neck");
     assert(getVotes("turtle neck") == 0);
 
-    assert(getVotes("blue") == 0);
+    uint blueVotes = getVotes("blue");
     sweaterVote("blue");
-    assert(getVotes("blue") == 1);
+    blueVotes += 1;
+    assert(getVotes("blue") == blueVotes);
     sweaterVote("blue");
-    assert(getVotes("blue") == 2);
+    blueVotes += 1;
+    assert(getVotes("blue") == blueVotes);
   }
 }

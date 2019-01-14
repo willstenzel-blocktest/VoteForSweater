@@ -5,19 +5,26 @@ import "./VoteForSweaterV3.sol";
 contract TestVoteForSweaterV3 is VoteForSweaterV3 {
 
   function test_sweaterVote() {
+    // Voting for an invalid option 'turtle neck'
+    uint turtleneckVotes = 0;
+    bool voted = checkAlreadyVoted(msg.sender);
+    assert(getVotes("turtle neck") == turtleneckVotes);
+    assert(voted == false);
+    sweaterVote("turtle neck");
+    voted = checkAlreadyVoted(msg.sender);
+    assert(getVotes("turtle neck") == turtleneckVotes);
+    assert(voted == false);
+
     // Voting for a valid option 'blue'
     uint blueVotes = getVotes("blue");
-    assert(checkAlreadyVoted(msg.sender) == false);
+    assert(voted == false);
     sweaterVote("blue");
     blueVotes += 1;
     assert(getVotes("blue") == blueVotes);
-    assert(checkAlreadyVoted(msg.sender) == true);
+    voted = checkAlreadyVoted(msg.sender);
+    assert(voted == true);
 
-    // Voting for an invalid option 'turtle neck'
-    assert(getVotes("turtle neck") == 0);
-    assert(checkAlreadyVoted(msg.sender) == false);
-    sweaterVote("turtle neck");
-    assert(getVotes("turtle neck") == 0);
-    assert(checkAlreadyVoted(msg.sender) == false);
+    bool result = address(this).call(bytes4(keccak256("sweaterVote('green')")));
+    assert(result == false);
   }
 }

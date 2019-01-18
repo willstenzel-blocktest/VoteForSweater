@@ -4,7 +4,7 @@ import "./VoteForSweaterV3.sol";
 
 contract TestVoteForSweaterV3 is VoteForSweaterV3 {
 
-  function test_sweaterVote() {
+  function test_sweaterVoteV3() {
     // Voting for an invalid option 'turtle neck'
     uint turtleneckVotes = 0;
     bool voted = checkAlreadyVoted(msg.sender);

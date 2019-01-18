@@ -4,7 +4,7 @@ import "./VoteForSweaterV2.sol";
 
 contract TestVoteForSweaterV2 is VoteForSweaterV2 {
 
-  function test_sweaterVote() {
+  function test_sweaterVoteV2() {
     // Voting for a valid option 'blue'
     uint blueVotes = getVotes("blue");
     sweaterVote("blue");
